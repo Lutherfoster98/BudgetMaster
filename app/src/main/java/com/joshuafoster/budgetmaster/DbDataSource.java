@@ -68,6 +68,11 @@ public class DbDataSource {
         return transactions;
     }
 
+    public Cursor getCursor(String query){
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
+    }
+
     void addTransaction(Transaction transaction) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
 
