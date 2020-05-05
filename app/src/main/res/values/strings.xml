@@ -13,4 +13,5 @@
     <string name="select_a_category">Select A Category:</string>
     <string name="amount">Amount ($)</string>
     <string name="description">Description</string>
+    <string name="view_budget">View Budget</string>
 </resources>

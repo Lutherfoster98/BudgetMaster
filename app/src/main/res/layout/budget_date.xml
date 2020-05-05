@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_beige">
+    android:background="@color/light_beige"
+    tools:ignore="Autofill">
 
     <ImageView
         android:id="@+id/logo_ImageView"
@@ -50,6 +51,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:ems="10"
+        android:hint="@string/enter_budget_name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budgetNameTV" />
@@ -75,6 +77,7 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="date"
+        android:hint="@string/date_format"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startTV" />
 
@@ -99,6 +102,7 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:inputType="date"
+        android:hint="@string/date_format"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endTV" />
 

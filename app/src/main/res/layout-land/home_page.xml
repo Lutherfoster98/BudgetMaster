@@ -12,7 +12,7 @@
         android:layout_width="175dp"
         android:layout_height="60dp"
         android:background="@color/orange"
-        android:text="View Budget"
+        android:text="@string/view_budget"
         android:textColor="@color/white"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/logo_with_dollar_sign"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineh25"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineh33"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -67,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.33" />
+        app:layout_constraintGuide_percent="0.33333334" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineh66"
@@ -88,6 +88,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:onClick="onClick"
+        android:contentDescription="@string/add_income"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev25"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,6 +100,7 @@
         android:layout_width="66dp"
         android:layout_height="66dp"
         android:onClick="onClick"
+        android:contentDescription="@string/add_expense"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev75"
         app:layout_constraintStart_toStartOf="@+id/guidelinev50"
@@ -113,6 +115,7 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:contentDescription="@string/add_expense"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="@+id/guidelinev25"
