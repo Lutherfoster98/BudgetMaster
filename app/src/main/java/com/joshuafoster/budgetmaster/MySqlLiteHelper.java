@@ -1,9 +1,16 @@
 package com.joshuafoster.budgetmaster;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 public class MySqlLiteHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "budgetmaster.sqlite";
@@ -68,6 +75,39 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         db.execSQL(sql);
         Log.i("Database", sql);
 
+        Random random = new Random();
+
+        String[] vendors = {"MacDonalds", "Target", "Shell", "Great Clips", "Auto Advance"};
+        String[] categories = {"Food", "Groceries", "Gas", "Personal Care", "Transportation"};
+
+        for (int i = 0; i < 5; i++) {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+            ContentValues values = new ContentValues();
+            values.put(MySqlLiteHelper.TRANS_DATE, dateFormat.format(Calendar.getInstance().getTime())); // Contact Name
+            values.put(MySqlLiteHelper.TRANS_AMOUNT, String.format("%.2f", random.nextDouble()));
+            values.put(MySqlLiteHelper.VENDOR_ID, i); // Contact Phone
+            values.put(MySqlLiteHelper.CAT_ID, i);
+
+            // Inserting Row
+            db.insert(MySqlLiteHelper.TRANSACTION_TABLE, null, values);
+            //2nd argument is String containing nullColumnHack
+        }
+
+        for (int i = 0; i < vendors.length; i++) {
+            ContentValues values = new ContentValues();
+            values.put(MySqlLiteHelper.VENDOR_NAME, vendors[i]);
+            db.insert(MySqlLiteHelper.VENDOR_TABLE, null, values);
+
+            values.clear();
+
+            values = new ContentValues();
+            values.put(MySqlLiteHelper.CAT_NAME, categories[i]);
+            values.put(MySqlLiteHelper.CAT_DESCRIPTION, "Test data");
+            db.insert(MySqlLiteHelper.CATEGORY_TABLE, null, values);
+
+
+        }
 
     }
 
