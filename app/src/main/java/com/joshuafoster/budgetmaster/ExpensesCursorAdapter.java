@@ -39,8 +39,8 @@ public class ExpensesCursorAdapter extends CursorAdapter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String vendor = cursor.getString(cursor.getColumnIndexOrThrow("vendor_name"));
-        Double amount = cursor.getDouble(cursor.getColumnIndexOrThrow("trans_amount"));
+        String vendor = cursor.getString(cursor.getColumnIndexOrThrow(MySqlLiteHelper.VENDOR_NAME));
+        Double amount = cursor.getDouble(cursor.getColumnIndexOrThrow(MySqlLiteHelper.TRANS_AMOUNT));
         // Populate fields with extracted properties
         tv_date.setText(writeDateFormat.format(date));
         tv_vendor.setText(vendor);

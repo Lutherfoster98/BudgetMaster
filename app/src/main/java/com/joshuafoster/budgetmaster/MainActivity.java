@@ -23,47 +23,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
-
-        Button ViewButton = findViewById(R.id.viewBudgetButton);
-        ViewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(R.layout.budget_overview);
-                setOverviewListeners();
-            }
-        });
-    }
-
-    //set listeners for Budget_overview.xml
-    private void setOverviewListeners() {
-        Button temporary;
-        temporary=findViewById(R.id.editIncomeBtn);
-        temporary.setOnClickListener(this);
-        temporary=findViewById(R.id.editExpensesBtn);
-        temporary.setOnClickListener(this);
-        temporary=findViewById(R.id.editSavingsBtn);
-        temporary.setOnClickListener(this);
+        DbDataSource startDB = new DbDataSource(this);
+        Button temp = findViewById(R.id.viewBudgetButton);
+        temp.setOnClickListener(this);
+        temp = findViewById(R.id.createNewBudgetButton);
+        temp.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.editIncomeBtn:
-                setContentView(R.layout.income_overview);
-                break;
-            case R.id.editExpensesBtn:
-                Intent intent = new Intent(this, ExpensesActivity.class);
-                startActivity(intent);
-                setContentView(R.layout.expenses_overview);
-                break;
-            case R.id.editSavingsBtn:
-                setContentView(R.layout.savings_overview);
-                break;
-
             // Buttons on home page
+            case R.id.viewBudgetButton:
+                Intent budgetOverviewIntent = new Intent(this, BudgetOverviewActivity.class);
+                startActivity(budgetOverviewIntent);
+                break;
             case R.id.createNewBudgetButton:
-                setContentView(R.layout.set_budget);
+                Intent newBudgetIntent = new Intent(this, NewBudgetActivity.class);
+                startActivity(newBudgetIntent);
                 break;
             case R.id.plusSignImageView:
                 Intent addIncomeIntent = new Intent(this, AddIncomeActivity.class);

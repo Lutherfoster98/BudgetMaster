@@ -85,9 +85,9 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
             SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
             ContentValues values = new ContentValues();
             values.put(MySqlLiteHelper.TRANS_DATE, dateFormat.format(Calendar.getInstance().getTime())); // Contact Name
-            values.put(MySqlLiteHelper.TRANS_AMOUNT, String.format("%.2f", random.nextDouble()));
-            values.put(MySqlLiteHelper.VENDOR_ID, i); // Contact Phone
-            values.put(MySqlLiteHelper.CAT_ID, i);
+            values.put(MySqlLiteHelper.TRANS_AMOUNT, String.format("%.2f", random.nextDouble()*100));
+            values.put(MySqlLiteHelper.VENDOR_ID, i+1); // Contact Phone
+            values.put(MySqlLiteHelper.CAT_ID, i+1);
 
             // Inserting Row
             db.insert(MySqlLiteHelper.TRANSACTION_TABLE, null, values);
