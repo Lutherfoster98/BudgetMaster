@@ -63,7 +63,7 @@
         app:layout_constraintTop_toTopOf="@+id/guidelineh33" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/income_category_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"

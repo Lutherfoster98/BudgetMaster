@@ -102,7 +102,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setContentView(R.layout.set_budget);
                 break;
             case R.id.plusSignImageView:
-                setContentView(R.layout.new_income);
+                Intent addIncomeIntent = new Intent(this, AddIncomeActivity.class);
+                startActivity(addIncomeIntent);
                 break;
             case R.id.minusSignImageView:
                 setContentView(R.layout.new_expense);

@@ -73,7 +73,12 @@ public class DbDataSource {
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
+                transaction.setAmount(cursor.getDouble(cursor.getColumnIndex(MySqlLiteHelper.TRANS_AMOUNT)));
+                transaction.setDescription(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.TRANS_DESCRIPTION)));
                 transaction.setVendor_id(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.VENDOR_ID)));
+                transaction.setVendor_name(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.VENDOR_NAME)));
+                transaction.setCat_id(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.CAT_ID)));
+                transaction.setCat_name(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.CAT_NAME)));
                 // Adding contact to list
                 transactions.add(transaction);
             } while (cursor.moveToNext());
@@ -81,6 +86,95 @@ public class DbDataSource {
 
         return transactions;
     }
+
+    public Transaction getTransaction(int id) {
+        Transaction transaction = new Transaction();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+
+        String query = "SELECT " +
+                MySqlLiteHelper.TRANS_ID + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_DATE + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_AMOUNT + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_DESCRIPTION + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.VENDOR_ID + ", " +
+                MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_NAME + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.CAT_ID + ", " +
+                MySqlLiteHelper.CATEGORY_TABLE + "." + MySqlLiteHelper.CAT_NAME + " FROM " +
+                MySqlLiteHelper.TRANSACTION_TABLE + " INNER JOIN " +
+                MySqlLiteHelper.VENDOR_TABLE + " ON " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " = " +
+                MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " INNER JOIN " +
+                MySqlLiteHelper.CATEGORY_TABLE + " ON " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.CAT_ID + " = " +
+                MySqlLiteHelper.CATEGORY_TABLE + "." + MySqlLiteHelper.CAT_ID + "WHERE " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_ID + " = " + id + ";";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                transaction.setId(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.TRANS_ID)));
+                try {
+                    transaction.setDate(dateFormat.parse(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.TRANS_DATE))));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                transaction.setAmount(cursor.getDouble(cursor.getColumnIndex(MySqlLiteHelper.TRANS_AMOUNT)));
+                transaction.setDescription(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.TRANS_DESCRIPTION)));
+                transaction.setVendor_id(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.VENDOR_ID)));
+                transaction.setVendor_name(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.VENDOR_NAME)));
+                transaction.setCat_id(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.CAT_ID)));
+                transaction.setCat_name(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.CAT_NAME)));
+                // Adding contact to list
+            } while (cursor.moveToNext());
+        }
+
+        return transaction;
+    }
+
+
+    public List<Vendor> getAllVendors() {
+        List<Vendor> vendors = new ArrayList<>();
+
+        String query = "SELECT * FROM " + MySqlLiteHelper.VENDOR_TABLE + ";";
+        Cursor cursor = database.rawQuery(query, null);
+        Log.i("Tracking", "Vendor rows returned: " + cursor.getCount());
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Vendor vendor = new Vendor();
+                vendor.setId(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.VENDOR_ID)));
+                vendor.setName(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.VENDOR_NAME)));
+                // Adding contact to list
+                vendors.add(vendor);
+            } while (cursor.moveToNext());
+        }
+
+        return vendors;
+    }
+
+    public List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
+
+        String query = "SELECT * FROM " + MySqlLiteHelper.CATEGORY_TABLE + ";";
+        Cursor cursor = database.rawQuery(query, null);
+        Log.i("Tracking", "Category rows returned: " + cursor.getCount());
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Category category = new Category();
+                category.setId(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.CAT_ID)));
+                category.setName(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.CAT_NAME)));
+                category.setDescription(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.CAT_DESCRIPTION)));
+                // Adding contact to list
+                categories.add(category);
+            } while (cursor.moveToNext());
+        }
+
+        return categories;
+    }
+
 
     public Cursor getCursor(String query){
         Cursor cursor = database.rawQuery(query, null);
