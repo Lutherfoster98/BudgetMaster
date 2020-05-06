@@ -93,13 +93,13 @@
         android:id="@+id/plusSignImageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:onClick="onClick"
         android:contentDescription="@string/add_income"
+        android:onClick="onClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineh75"
-        app:srcCompat="@drawable/plus_sign" />
+        app:srcCompat="@drawable/minus_sign" />
 
     <ImageView
         android:id="@+id/minusSignImageView"

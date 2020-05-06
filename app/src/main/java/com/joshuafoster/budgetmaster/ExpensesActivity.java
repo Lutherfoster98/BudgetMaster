@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,11 +23,19 @@ public class ExpensesActivity extends AppCompatActivity implements AdapterView.O
         DbDataSource dataSource = new DbDataSource(this);
         dataSource.openForReading();
         // Query for items from the database and get a cursor back
-        Cursor cursor = dataSource.getCursor("SELECT  id AS _id, date, vendor, amount FROM Transactions");
+        String query = "SELECT " + MySqlLiteHelper.TRANS_ID + " AS _id, " +
+                MySqlLiteHelper.TRANS_DATE + ", " +
+                MySqlLiteHelper.VENDOR_NAME + ", " +
+                MySqlLiteHelper.TRANS_AMOUNT + " FROM " +
+                MySqlLiteHelper.TRANSACTION_TABLE + " INNER JOIN " +
+                MySqlLiteHelper.VENDOR_TABLE + " ON " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " = " +
+                MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_ID + ";";
+        Cursor cursor = dataSource.getCursor(query);
+        Log.i("Database", "Query: " + query);
 
         if (cursor.moveToFirst()) {
-            ExpensesCursorAdapter adapter = new ExpensesCursorAdapter(this, cursor);
-            listView.setAdapter(adapter);
+            listView.setAdapter(new ExpensesCursorAdapter(this, cursor));
         }
     }
 

@@ -42,24 +42,38 @@ public class DbDataSource {
         List<Transaction> transactions = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
 
-        String selectQuery = "SELECT * FROM " + databaseHelper.TRANSACTION_TABLE;
+        String query = "SELECT " +
+                MySqlLiteHelper.TRANS_ID + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_DATE + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_AMOUNT + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_DESCRIPTION + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.VENDOR_ID + ", " +
+                MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_NAME + ", " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.CAT_ID + ", " +
+                MySqlLiteHelper.CATEGORY_TABLE + "." + MySqlLiteHelper.CAT_NAME + " FROM " +
+                MySqlLiteHelper.TRANSACTION_TABLE + " INNER JOIN " +
+                MySqlLiteHelper.VENDOR_TABLE + " ON " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " = " +
+                MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " INNER JOIN " +
+                MySqlLiteHelper.CATEGORY_TABLE + " ON " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.CAT_ID + " = " +
+                MySqlLiteHelper.CATEGORY_TABLE + "." + MySqlLiteHelper.CAT_ID + ";";
 
-        Cursor cursor = database.rawQuery(selectQuery, null);
+
+        Cursor cursor = database.rawQuery(query, null);
         Log.i("Tracking", "Rows returned: " + cursor.getCount());
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 Transaction transaction = new Transaction();
-                transaction.setId(cursor.getInt(0));
+                transaction.setId(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.TRANS_ID)));
                 try {
-                    transaction.setDate(dateFormat.parse(cursor.getString(1)));
+                    transaction.setDate(dateFormat.parse(cursor.getString(cursor.getColumnIndex(MySqlLiteHelper.TRANS_DATE))));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                transaction.setVendor(cursor.getString(2));
-                transaction.setAmount(cursor.getDouble(3));
-                transaction.setCategory(cursor.getString(4));
+                transaction.setVendor_id(cursor.getInt(cursor.getColumnIndex(MySqlLiteHelper.VENDOR_ID)));
                 // Adding contact to list
                 transactions.add(transaction);
             } while (cursor.moveToNext());
@@ -77,14 +91,30 @@ public class DbDataSource {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
 
         ContentValues values = new ContentValues();
-        values.put(MySqlLiteHelper.DATE, dateFormat.format(transaction.getDate())); // Contact Name
-        values.put(MySqlLiteHelper.VENDOR, transaction.getVendor()); // Contact Phone
-        values.put(MySqlLiteHelper.AMOUNT, String.format("%.2f", transaction.getAmount()));
-        values.put(MySqlLiteHelper.CATEGORY, transaction.getCategory());
+        values.put(MySqlLiteHelper.TRANS_DATE, dateFormat.format(transaction.getDate())); // Contact Name
+        values.put(MySqlLiteHelper.TRANS_AMOUNT, String.format("%.2f", transaction.getAmount()));
+        if (!transaction.getDescription().isEmpty())
+            values.put(MySqlLiteHelper.TRANS_DESCRIPTION, transaction.getDescription());
+        values.put(MySqlLiteHelper.VENDOR_ID, transaction.getVendor_id()); // Contact Phone
+        values.put(MySqlLiteHelper.CAT_ID, transaction.getCat_id());
 
         // Inserting Row
         database.insert(MySqlLiteHelper.TRANSACTION_TABLE, null, values);
         //2nd argument is String containing nullColumnHack
-        Log.i("Tracking", "Added record: " + transaction.getVendor() + " $" + transaction.getAmount());
+        Log.i("Database", "Added record: " + transaction.toString());
     }
+
+    void addCategory(String name, String description){
+        ContentValues values = new ContentValues();
+        values.put(MySqlLiteHelper.CAT_NAME, name);
+        values.put(MySqlLiteHelper.CAT_DESCRIPTION, description);
+        database.insert(MySqlLiteHelper.CATEGORY_TABLE, null, values);
+    }
+
+    void addVendor(String name){
+        ContentValues values = new ContentValues();
+        values.put(MySqlLiteHelper.VENDOR_NAME, name);
+        database.insert(MySqlLiteHelper.VENDOR_TABLE, null, values);
+    }
+
 }

@@ -14,6 +14,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,8 +32,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setOverviewListeners();
             }
         });
+        insertSampleData();
+    }
+
+    private void insertSampleData(){
+        final int LIMIT = 10;
+        Log.i("Database", "Database opened for writing.");
+
+        DbDataSource dataSource = new DbDataSource(this);
+        dataSource.openForWriting();
+        Random random = new Random();
+
+        String[] vendors = {"MacDonalds", "Target", "Shell", "Chipotle", "Sonic"};
+        String[] categories = {"Food", "Groceries", "Gas", "Food", "Food"};
+
+        for (int i = 0; i < LIMIT; i++) {
+            int randomIndex = random.nextInt(5);
+            dataSource.addTransaction(new Transaction(Calendar.getInstance().getTime(), random.nextDouble() * 100, randomIndex, vendors[randomIndex], randomIndex, categories[randomIndex], "Test data"));
+            Log.i("Database", "Added " + i + " records");
+        }
+
+        for (int i = 0; i < vendors.length; i++) {
+            dataSource.addVendor(vendors[i]);
+            dataSource.addCategory(categories[i], "Test data");
+        }
+
+        List<Transaction> newTransactions = dataSource.getAllTransactions();
+        Log.i("Database", "Transactions retrieved: " + newTransactions.size());
+        for (int i = 0; i < newTransactions.size(); i++){
+            Log.i("Database", "Loaded: " + newTransactions.get(i).toString());
+        }
+
+
+
+
+        dataSource.close();
 
     }
+
     //set listeners for Budget_overview.xml
     private void setOverviewListeners() {
         Button temporary;

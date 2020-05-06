@@ -35,12 +35,12 @@ public class ExpensesCursorAdapter extends CursorAdapter {
         SimpleDateFormat writeDateFormat = new SimpleDateFormat("MM-dd-yy", Locale.ENGLISH);
         Date date = new Date();
         try {
-            date = parseDateFormat.parse(cursor.getString(cursor.getColumnIndexOrThrow("date")));
+            date = parseDateFormat.parse(cursor.getString(cursor.getColumnIndexOrThrow("trans_date")));
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String vendor = cursor.getString(cursor.getColumnIndexOrThrow("vendor"));
-        Double amount = cursor.getDouble(cursor.getColumnIndexOrThrow("amount"));
+        String vendor = cursor.getString(cursor.getColumnIndexOrThrow("vendor_name"));
+        Double amount = cursor.getDouble(cursor.getColumnIndexOrThrow("trans_amount"));
         // Populate fields with extracted properties
         tv_date.setText(writeDateFormat.format(date));
         tv_vendor.setText(vendor);
