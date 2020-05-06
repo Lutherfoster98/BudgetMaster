@@ -61,16 +61,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // Buttons on home page
             case R.id.createNewBudgetButton:
-
-                break;
-            case R.id.viewBudgetButton:
-
+                setContentView(R.layout.set_budget);
                 break;
             case R.id.plusSignImageView:
-                //setContentView(R.layout.new_income);
+                setContentView(R.layout.new_income);
                 break;
             case R.id.minusSignImageView:
-                //setContentView(R.layout.new_expense);
+                setContentView(R.layout.new_expense);
                 break;
         }
 
