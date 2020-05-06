@@ -65,11 +65,8 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        EditText categoryText = findViewById(R.id.categoryET);
-        EditText vendorText = findViewById(R.id.vendorET);
 
-        String item = adapterView.getItemAtPosition(i).toString();
-        
+
     }
 
     @Override
