@@ -3,7 +3,7 @@ package com.joshuafoster.budgetmaster;
 public class Category {
 
     private int id;
-    private String name, description;
+    private String name, description, type;
 
     public Category(){
 
@@ -39,6 +39,14 @@ public class Category {
 
     public void setName(String name){
         this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type){
+        this.type = type;
     }
 
     public String getDescription(){

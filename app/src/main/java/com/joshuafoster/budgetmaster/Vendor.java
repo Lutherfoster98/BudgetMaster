@@ -7,7 +7,7 @@ import java.util.Locale;
 public class Vendor {
 
     private int id;
-    private String name;
+    private String name, type;
 
     public Vendor(){
 
@@ -42,4 +42,15 @@ public class Vendor {
     public void setName(String name){
         this.name = name;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type){
+        this.type = type;
+    }
+
 }
+
+

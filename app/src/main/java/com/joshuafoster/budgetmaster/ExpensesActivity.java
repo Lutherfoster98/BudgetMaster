@@ -30,7 +30,8 @@ public class ExpensesActivity extends AppCompatActivity implements AdapterView.O
                 MySqlLiteHelper.TRANSACTION_TABLE + " INNER JOIN " +
                 MySqlLiteHelper.VENDOR_TABLE + " ON " +
                 MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " = " +
-                MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_ID + ";";
+                MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " WHERE " +
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_AMOUNT + " < 0;";
         Cursor cursor = dataSource.getCursor(query);
         Log.i("Database", "Query: " + query);
 

@@ -28,8 +28,8 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_income);
         dataSource.openForReading();
-        vendors = dataSource.getAllVendors();
-        categories = dataSource.getAllCategories();
+        vendors = dataSource.getAllVendors(MySqlLiteHelper.INCOME_TYPE);
+        categories = dataSource.getAllCategories(MySqlLiteHelper.INCOME_TYPE);
         dataSource.close();
 
         // Spinner elements

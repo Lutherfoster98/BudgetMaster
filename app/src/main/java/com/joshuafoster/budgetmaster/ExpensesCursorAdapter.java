@@ -21,7 +21,7 @@ public class ExpensesCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.transaction_layout, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.transaction_layout, parent, false); //layout goes here
     }
 
     @Override
@@ -44,6 +44,6 @@ public class ExpensesCursorAdapter extends CursorAdapter {
         // Populate fields with extracted properties
         tv_date.setText(writeDateFormat.format(date));
         tv_vendor.setText(vendor);
-        tv_amount.setText("$" + String.valueOf(amount));
+        tv_amount.setText("$" + String.valueOf(amount * -1));
     }
 }

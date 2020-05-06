@@ -132,10 +132,11 @@ public class DbDataSource {
     }
 
 
-    public List<Vendor> getAllVendors() {
+    public List<Vendor> getAllVendors(String type) {
         List<Vendor> vendors = new ArrayList<>();
 
-        String query = "SELECT * FROM " + MySqlLiteHelper.VENDOR_TABLE + ";";
+        String query = "SELECT * FROM " + MySqlLiteHelper.VENDOR_TABLE + " WHERE " +
+                MySqlLiteHelper.VENDOR_TYPE + " = \"" + type + "\";";
         Cursor cursor = database.rawQuery(query, null);
         Log.i("Tracking", "Vendor rows returned: " + cursor.getCount());
 
@@ -153,10 +154,11 @@ public class DbDataSource {
         return vendors;
     }
 
-    public List<Category> getAllCategories() {
+    public List<Category> getAllCategories(String type) {
         List<Category> categories = new ArrayList<>();
 
-        String query = "SELECT * FROM " + MySqlLiteHelper.CATEGORY_TABLE + ";";
+        String query = "SELECT * FROM " + MySqlLiteHelper.CATEGORY_TABLE + " WHERE " +
+                MySqlLiteHelper.CAT_TYPE + " = \"" + type + "\";";
         Cursor cursor = database.rawQuery(query, null);
         Log.i("Tracking", "Category rows returned: " + cursor.getCount());
 
