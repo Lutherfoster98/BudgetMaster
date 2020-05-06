@@ -26,7 +26,7 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_income);
+        setContentView(R.layout.income);
         dataSource.openForReading();
         vendors = dataSource.getAllVendors(MySqlLiteHelper.INCOME_TYPE);
         categories = dataSource.getAllCategories(MySqlLiteHelper.INCOME_TYPE);
@@ -72,5 +72,16 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cancelButton:
+                finish();
+                break;
+            case R.id.saveIncomeButton:
+
+                break;
+        }
     }
 }

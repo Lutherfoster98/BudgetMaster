@@ -45,4 +45,16 @@ public class ExpensesActivity extends AppCompatActivity implements AdapterView.O
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
+
+
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.cancelButton:
+                finish();
+                break;
+            case R.id.saveExpenseButton:
+
+                break;
+        }
+    }
 }

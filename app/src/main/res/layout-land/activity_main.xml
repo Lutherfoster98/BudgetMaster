@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineh66"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelinev50"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh33" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh15" />
 
     <Button
         android:id="@+id/createNewBudgetButton"
@@ -35,14 +35,14 @@
         app:layout_constraintBottom_toTopOf="@+id/guidelineh66"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh33" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh15" />
 
     <ImageView
         android:id="@+id/logo_ImageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/logo_with_dollar_sign"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineh33"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineh15"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,14 +56,14 @@
         android:text="@string/app_name"
         android:textColor="@color/black"
         android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineh33"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineh15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelinev50"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineh33"
+        android:id="@+id/guidelineh15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -93,7 +93,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guidelinev25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineh66"
-        app:srcCompat="@drawable/minus_sign" />
+        app:srcCompat="@drawable/plus_sign" />
 
     <ImageView
         android:id="@+id/minusSignImageView"

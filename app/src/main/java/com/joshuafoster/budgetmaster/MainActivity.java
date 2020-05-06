@@ -11,23 +11,23 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Calendar;
-import java.util.List;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_page);
+        setContentView(R.layout.activity_main);
         DbDataSource startDB = new DbDataSource(this);
         Button temp = findViewById(R.id.viewBudgetButton);
         temp.setOnClickListener(this);
         temp = findViewById(R.id.createNewBudgetButton);
         temp.setOnClickListener(this);
+
     }
 
     @Override
@@ -48,19 +48,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(addIncomeIntent);
                 break;
             case R.id.minusSignImageView:
-                setContentView(R.layout.new_expense);
+                setContentView(R.layout.expense);
                 break;
         }
 
     }
 
-    /*class displayCalendar() {
-        final TextView startDate, endDate;
+    /* private void pickDate () {
+        final EditText startDate, endDate;
         DatePickerDialog.OnDateSetListener DateSetListener = null;
-
             startDate = findViewById(R.id.startDateET);
             endDate = findViewById(R.id.endDateET);
-
             startDate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -68,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     int year = cal.get(Calendar.YEAR);
                     int month = cal.get(Calendar.MONTH);
                     int day = cal.get(Calendar.DAY_OF_MONTH);
-
                     DatePickerDialog dialog = new DatePickerDialog(
                             MainActivity.this,
                             android.R.style.Theme_Holo_Light_Dialog_MinWidth,
@@ -78,13 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     dialog.show();
                 }
             });
-
             DateSetListener = new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                     month = month + 1;
                     Log.d("DATE", "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-
                     String date = month + "/" + day + "/" + year;
                     startDate.setText(date);
                 }
@@ -92,4 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     } */
-}
+    }
+
+

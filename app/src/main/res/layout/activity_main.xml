@@ -17,7 +17,7 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:onClick="onClick"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineh75"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineh70"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guidelineh50" />
@@ -76,7 +76,7 @@
         app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineh75"
+        android:id="@+id/guidelineh70"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -98,8 +98,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh75"
-        app:srcCompat="@drawable/minus_sign" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh70"
+        app:srcCompat="@drawable/plus_sign" />
 
     <ImageView
         android:id="@+id/minusSignImageView"
@@ -110,7 +110,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelinev50"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh75"
+        app:layout_constraintTop_toTopOf="@+id/guidelineh70"
         app:srcCompat="@drawable/minus_sign" />
 
     <TextView
@@ -124,7 +124,7 @@
         app:layout_constraintBottom_toTopOf="@+id/plusSignImageView"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh75" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh70" />
 
     <TextView
         android:id="@+id/addExpenseTV"
@@ -137,6 +137,6 @@
         app:layout_constraintBottom_toTopOf="@+id/minusSignImageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelinev50"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh75" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh70" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

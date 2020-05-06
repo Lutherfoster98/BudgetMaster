@@ -67,7 +67,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh33" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh15" />
 
     <EditText
         android:id="@+id/startDateET"
@@ -129,7 +129,7 @@
         app:layout_constraintGuide_percent="0.50" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineh33"
+        android:id="@+id/guidelineh15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

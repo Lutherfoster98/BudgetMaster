@@ -10,8 +10,12 @@
     <string name="budget_name">Budget Name</string>
     <string name="enter_budget_name">Enter name of budget</string>
     <string name="date_format">MM/DD/YYYY</string>
-    <string name="select_a_category">Category:</string>
+    <string name="category">Category</string>
     <string name="amount">Amount ($)</string>
-    <string name="description">Description</string>
+    <string name="note">Add Note (Optional)</string>
     <string name="view_budget">View Budget</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="Payor">Payor (Optional)</string>
+    <string name="Payee">Payee (Optional)</string>
 </resources>

@@ -13,7 +13,7 @@
         android:layout_height="109dp"
         android:contentDescription="@string/logo_with_dollar_sign"
 
-        app:layout_constraintBottom_toTopOf="@+id/guidelineh33"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineh15"
         app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,17 +27,10 @@
         android:text="@string/app_name"
         android:textColor="@color/black"
         android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineh33"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineh15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guidelinev50"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineh33"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinev50"
@@ -46,9 +39,23 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.50" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineh15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineh70"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
 
     <TextView
-        android:id="@+id/addExpenseHeadingTV"
+        android:id="@+id/expenseHeadingTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/orange"
@@ -57,20 +64,41 @@
         android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineh33" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh15" />
+
+    <EditText
+        android:id="@+id/dateET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/date_format"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseHeadingTV" />
 
     <Spinner
-        android:id="@+id/income_category_spinner"
-        android:layout_width="409dp"
+        android:id="@+id/expense_category_spinner"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectCategoryTV" />
+
+    <Spinner
+        android:id="@+id/expense_vendor_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payeeTV" />
 
     <TextView
         android:id="@+id/selectCategoryTV"
@@ -78,48 +106,77 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
-        android:text="@string/select_a_category"
+        android:text="@string/category"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addExpenseHeadingTV" />
+        app:layout_constraintTop_toBottomOf="@+id/dateET" />
 
-    <EditText
-        android:id="@+id/descriptionET"
+    <TextView
+        android:id="@+id/payeeTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="35dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="@string/description"
+        android:layout_marginTop="20dp"
+        android:text="@string/Payee"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/amountET" />
+
+    <EditText
+        android:id="@+id/expenseDescriptionET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="@string/note"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_category_spinner" />
 
     <EditText
         android:id="@+id/amountET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="@string/amount"
         android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionET" />
+        app:layout_constraintTop_toBottomOf="@+id/expenseDescriptionET" />
 
-    <EditText
-        android:id="@+id/dateET"
+    <Button
+        android:id="@+id/saveExpenseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="35dp"
-        android:ems="10"
-        android:hint="@string/date_format"
-        android:inputType="date"
+        android:layout_marginTop="20dp"
+        android:background="@color/orange"
+        android:onClick="onClick"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guidelinev50"
+        app:layout_constraintTop_toTopOf="@+id/guidelineh70" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/orange"
+        android:onClick="onClick"
+        android:text="@string/cancel"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guidelinev50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amountET" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineh70" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
