@@ -3,6 +3,7 @@ package com.joshuafoster.budgetmaster;
 // Team Members: Lionel Sosa Estrada, Joshua Foster, and Stephanie Escue
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -146,6 +148,27 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
                 finish();
                 break;
             case R.id.saveIncomeButton:
+                Transaction transaction = new Transaction();
+                EditText dateText = findViewById(R.id.dateET);
+                try {
+                    transaction.setDate(MySqlLiteHelper.DATE_FORMAT_TEXT.parse(dateText.getText().toString()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Spinner spinner = findViewById(R.id.income_category_spinner);
+                transaction.setCat_name(spinner.getSelectedItem().toString());
+                transaction.setCat_id(2);
+                EditText descriptionText = findViewById(R.id.incomeDescriptionET);
+                transaction.setDescription(descriptionText.getText().toString());
+                EditText amountText = findViewById(R.id.amountET);
+                transaction.setAmount(Integer.valueOf(amountText.getText().toString()));
+                transaction.setVendor_id(3);
+                DbDataSource database = new DbDataSource(this);
+                database.openForWriting();
+                database.addTransaction(transaction);
+                database.close();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
 
                 break;
         }

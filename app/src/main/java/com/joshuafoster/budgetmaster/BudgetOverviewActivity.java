@@ -43,7 +43,8 @@ public class BudgetOverviewActivity extends AppCompatActivity implements View.On
                 startActivity(intent);
                 break;
             case R.id.viewBudgetBtn:
-                setContentView(R.layout.savings_overview);
+                Intent viewBudgetIntent = new Intent(this, ShowBudgetActivity.class);
+                startActivity(viewBudgetIntent);
                 break;
             case R.id.budgetOverviewCancelButton:
                 finish();
