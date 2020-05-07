@@ -1,5 +1,7 @@
 package com.joshuafoster.budgetmaster;
 
+// Team Members: Lionel Sosa Estrada, Joshua Foster, and Stephanie Escue
+
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -50,7 +52,7 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         endDateListener,
                         year,month,day);
-                dpd.getWindow();
+                dpd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dpd.show();
             }
         });
@@ -67,7 +69,7 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         startDateListener,
                         year,month,day);
-                dpd.getWindow();
+                dpd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dpd.show();
             }
         });

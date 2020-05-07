@@ -1,7 +1,11 @@
 package com.joshuafoster.budgetmaster;
 
+// Team Members: Lionel Sosa Estrada, Joshua Foster, and Stephanie Escue
+
 import android.app.DatePickerDialog;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -81,7 +85,7 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
                         android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         dateSetListener,
                         year,month,day);
-                dpd.getWindow();
+                dpd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dpd.show();
             }
         });

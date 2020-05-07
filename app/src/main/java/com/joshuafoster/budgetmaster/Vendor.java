@@ -1,5 +1,7 @@
 package com.joshuafoster.budgetmaster;
 
+// Team Members: Lionel Sosa Estrada, Joshua Foster, and Stephanie Escue
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;

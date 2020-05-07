@@ -1,5 +1,7 @@
 package com.joshuafoster.budgetmaster;
 
+// Team Members: Lionel Sosa Estrada, Joshua Foster, and Stephanie Escue
+
 public class Category {
 
     private int id;

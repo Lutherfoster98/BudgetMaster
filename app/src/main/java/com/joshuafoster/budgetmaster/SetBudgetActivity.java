@@ -1,5 +1,7 @@
 package com.joshuafoster.budgetmaster;
 
+// Team Members: Lionel Sosa Estrada, Joshua Foster, and Stephanie Escue
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
