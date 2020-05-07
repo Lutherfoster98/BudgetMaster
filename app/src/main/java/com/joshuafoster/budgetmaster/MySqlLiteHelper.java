@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -40,6 +41,9 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     public static final String[] CATEGORIES_EXPENSES = {"Groceries", "Restaurants", "Gas", "Utilities", "Auto Insurance", "Mortgage"};
     public static final String[] VENDORS_INCOME = {"Employer", "Social Security", "Cabin Rental", "Bank"};
     public static final String[] VENDORS_EXPENSES = {"Walmart", "Applebees", "Telecom", "Mortgage Services LLC", "Gas company", "Geico"};
+    public static final DateFormat DATE_FORMAT_DB = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
+    public static final DateFormat DATE_FORMAT_TEXT = new SimpleDateFormat("MM-dd-yy", Locale.ENGLISH);
+
 
 
     public MySqlLiteHelper(Context context) {
@@ -86,9 +90,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
         for (int i = 0; i < 10; i++) { //add 10 expenses
             int randomCategory = random.nextInt(CATEGORIES_EXPENSES.length) + 1;
             int randomVendor = random.nextInt(VENDORS_EXPENSES.length) + 1;
-            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
             ContentValues values = new ContentValues();
-            values.put(MySqlLiteHelper.TRANS_DATE, dateFormat.format(Calendar.getInstance().getTime()));
+            values.put(MySqlLiteHelper.TRANS_DATE, DATE_FORMAT_DB.format(Calendar.getInstance().getTime()));
             values.put(MySqlLiteHelper.TRANS_AMOUNT, String.format("%.2f", random.nextDouble()*-100));
             values.put(MySqlLiteHelper.VENDOR_ID, randomVendor);
             values.put(MySqlLiteHelper.CAT_ID, randomCategory);
@@ -116,9 +119,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
             int randomCategory = random.nextInt(CATEGORIES_INCOME.length) + CATEGORIES_EXPENSES.length + 1;
             int randomVendor = random.nextInt(VENDORS_INCOME.length) + VENDORS_EXPENSES.length + 1;
 
-            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd kk:mm:ss z yyyy", Locale.ENGLISH);
             ContentValues values = new ContentValues();
-            values.put(MySqlLiteHelper.TRANS_DATE, dateFormat.format(Calendar.getInstance().getTime()));
+            values.put(MySqlLiteHelper.TRANS_DATE, DATE_FORMAT_DB.format(Calendar.getInstance().getTime()));
             values.put(MySqlLiteHelper.TRANS_AMOUNT, String.format("%.2f", random.nextDouble()*1000));
             values.put(MySqlLiteHelper.VENDOR_ID, randomVendor);
             values.put(MySqlLiteHelper.CAT_ID, randomCategory);

@@ -53,6 +53,7 @@
         android:ems="10"
         android:hint="@string/enter_budget_name"
         android:inputType="textPersonName"
+        android:text="Test"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budgetNameTV" />
 
@@ -76,8 +77,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="date"
         android:hint="@string/date_format"
+        android:inputType="date"
+        android:text="04-01-20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startTV" />
 
@@ -101,8 +103,9 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="date"
         android:hint="@string/date_format"
+        android:inputType="date"
+        android:text="04-30-20"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endTV" />
 

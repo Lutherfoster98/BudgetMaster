@@ -9,7 +9,7 @@ import android.util.Log;
 import com.joshuafoster.budgetmaster.MySqlLiteHelper;
 
 import java.lang.reflect.Array;
-import java.sql.Date;
+import java.util.Date;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -211,6 +211,14 @@ public class DbDataSource {
         ContentValues values = new ContentValues();
         values.put(MySqlLiteHelper.VENDOR_NAME, name);
         database.insert(MySqlLiteHelper.VENDOR_TABLE, null, values);
+    }
+
+    void addBudget(String name, Date start, Date end){
+        ContentValues values = new ContentValues();
+        values.put(MySqlLiteHelper.BUDGET_NAME, name);
+        values.put(MySqlLiteHelper.BUDGET_START, MySqlLiteHelper.DATE_FORMAT_DB.format(start));
+        values.put(MySqlLiteHelper.BUDGET_END, MySqlLiteHelper.DATE_FORMAT_DB.format(end));
+        database.insert(MySqlLiteHelper.BUDGET_TABLE, null, values);
     }
 
 }

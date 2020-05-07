@@ -2,6 +2,7 @@ package com.joshuafoster.budgetmaster;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.ParseException;
 import java.util.Date;
 
 public class NewBudgetActivity extends AppCompatActivity implements View.OnClickListener {
@@ -31,39 +33,39 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.editIncomeBtn:
-                setContentView(R.layout.income_overview);
-                break;
-            case R.id.editExpensesBtn:
-                Intent intent = new Intent(this, ExpensesActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.editSavingsBtn:
-                setContentView(R.layout.savings_overview);
-                break;
             case R.id.cancelButton:
                 onBackPressed();
                 break;
 
             case R.id.nextButton:
-                /*
                 // Get values of entered data
                 EditText et = findViewById(R.id.budgetET);
-                budgetName = et.getText().toString());
+                budgetName = et.getText().toString();
 
-                EditText et2 = findViewById(R.id.startDateET);
-                startDate = et2.getText();
+                et = findViewById(R.id.startDateET);
+                try {
+                    startDate = MySqlLiteHelper.DATE_FORMAT_TEXT.parse(et.getText().toString());
+                } catch (ParseException e) {
+                    Log.e("Date", e.toString());
+                }
 
-                EditText et3 = findViewById(R.id.endDateET);
-                endDate = et3.getText().toString();
+                et = findViewById(R.id.endDateET);
+                try {
+                    endDate = MySqlLiteHelper.DATE_FORMAT_TEXT.parse(et.getText().toString());
+                } catch (ParseException e) {
+                    Log.e("Date", e.toString());
+                }
 
                 // Send values to the database
                 DbDataSource dataSource = new DbDataSource(this);
                 dataSource.openForWriting();
-                dataSource.addBudget(Date )
+                dataSource.addBudget(budgetName, startDate, endDate);
 
+                setContentView(R.layout.set_budget);
 
-                setContentView(R.layout.set_budget); */
+                Intent budgetSetIntent = new Intent(this, SetBudgetActivity.class);
+                startActivity(budgetSetIntent);
+
                 break;
 
         }
