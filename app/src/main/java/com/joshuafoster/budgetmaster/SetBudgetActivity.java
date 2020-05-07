@@ -91,6 +91,7 @@ public class SetBudgetActivity extends AppCompatActivity implements View.OnClick
                     double amount = Double.valueOf(editText.getText().toString());
                     database.addBudgeted(budget_id, id, amount);
                 }
+                //Intent
                 setContentView(R.layout.activity_main);
                 break;
         }

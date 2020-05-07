@@ -48,7 +48,7 @@
     <Button
         android:id="@+id/incomeTransactionsBtn"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@color/blue"
         android:padding="10dp"
         android:text="View Income Transactions"
@@ -64,7 +64,7 @@
     <Button
         android:id="@+id/expenseTransactionsBtn"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@color/blue"
         android:padding="10dp"
         android:text="@string/view_expense_transactions"
@@ -80,7 +80,7 @@
     <Button
         android:id="@+id/viewBudgetBtn"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@color/blue"
         android:padding="10dp"
         android:text="@string/view_budget"

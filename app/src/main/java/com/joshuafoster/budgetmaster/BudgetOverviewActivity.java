@@ -35,7 +35,8 @@ public class BudgetOverviewActivity extends AppCompatActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.incomeTransactionsBtn:
-                setContentView(R.layout.income_overview);
+                Intent incomeIntent = new Intent(this, IncomeActivity.class);
+                startActivity(incomeIntent);
                 break;
             case R.id.expenseTransactionsBtn:
                 Intent intent = new Intent(this, ExpensesActivity.class);

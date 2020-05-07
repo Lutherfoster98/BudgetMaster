@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ExpensesActivity"></activity>
+        <activity android:name=".IncomeActivity"></activity>
         <activity android:name=".NewBudgetActivity"></activity>
         <activity android:name=".SetBudgetActivity"></activity>
         <activity android:name=".AddIncomeActivity"></activity>
