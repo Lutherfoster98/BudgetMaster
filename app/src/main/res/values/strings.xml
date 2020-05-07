@@ -18,4 +18,14 @@
     <string name="cancel">Cancel</string>
     <string name="Payor">Payor (Optional)</string>
     <string name="Payee">Payee (Optional)</string>
+    <string name="category_name">Category Name</string>
+    <string name="budget_planned">Budget Planned</string>
+    <string name="budget_spent">Budget Spent</string>
+    <string name="remaining">Remaining</string>
+    <string name="remaining_amount">Remaining Amount</string>
+    <string name="budget_dollars">Budget $</string>
+    <string name="spent_dollars">Spent $</string>
+    <string name="remaining_dollars">Remaining $</string>
+    <string name="date_here">date here</string>
+    <string name="vendor_here">vendor here</string>
 </resources>
