@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +16,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -33,12 +32,16 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.budget_date);
+        setContentView(R.layout.new_budget);
 
         b = findViewById(R.id.cancelButton);
         //set listeners
         startDateTv = findViewById(R.id.startDateET);
+        startDateTv.setInputType(InputType.TYPE_NULL);
+
         endDateTv = findViewById(R.id.endDateET);
+        endDateTv.setInputType(InputType.TYPE_NULL);
+
         endDateTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +114,7 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.cancelButton:
+            case R.id.newBudgetCancelButton:
                 onBackPressed();
                 break;
 

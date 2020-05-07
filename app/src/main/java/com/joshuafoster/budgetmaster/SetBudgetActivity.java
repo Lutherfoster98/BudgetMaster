@@ -77,7 +77,7 @@ public class SetBudgetActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.setBudgetCancelButton:
-                onBackPressed();
+                finish();
                 break;
             case R.id.setBudgetNextButton:
                 DbDataSource database = new DbDataSource(this);

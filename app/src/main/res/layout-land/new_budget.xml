@@ -51,8 +51,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="@string/enter_budget_name"
+        android:inputType="text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budgetNameTV" />
 
@@ -76,8 +76,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="date"
         android:hint="@string/date_format"
+        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/startTV" />
 
@@ -99,10 +99,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:ems="10"
         android:layout_marginTop="15dp"
-        android:inputType="date"
+        android:ems="10"
         android:hint="@string/date_format"
+        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/endTV" />
 
@@ -118,8 +118,23 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guidelinev50"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/appNameTV" />
+
+    <Button
+        android:id="@+id/newBudgetCancelButton"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:background="@color/orange"
+        android:onClick="onClick"
+        android:text="@string/cancel"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/guidelinev50"
+        app:layout_constraintTop_toTopOf="@+id/guidelineh66" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelinev50"
@@ -141,4 +156,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.66" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="546dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

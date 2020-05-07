@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -73,6 +74,8 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
 
 
         dateTv = findViewById(R.id.dateET);
+        dateTv.setInputType(InputType.TYPE_NULL);
+
         dateTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

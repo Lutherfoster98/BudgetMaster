@@ -28,4 +28,8 @@
     <string name="remaining_dollars">Remaining $</string>
     <string name="date_here">date here</string>
     <string name="vendor_here">vendor here</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="expense_transactions">Expense Transactions</string>
+    <string name="view_expense_transactions">View Expense Transactions</string>
+    <string name="income_transactions">Income Transactions</string>
 </resources>

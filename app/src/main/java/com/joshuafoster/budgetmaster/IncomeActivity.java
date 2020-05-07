@@ -2,24 +2,28 @@ package com.joshuafoster.budgetmaster;
 
 // Team Members: Lionel Sosa Estrada, Joshua Foster, and Stephanie Escue
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class ExpensesActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+import com.joshuafoster.budgetmaster.DbDataSource;
+import com.joshuafoster.budgetmaster.ExpensesCursorAdapter;
+import com.joshuafoster.budgetmaster.MySqlLiteHelper;
+import com.joshuafoster.budgetmaster.R;
+
+public class IncomeActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.expenses_overview);
+        setContentView(R.layout.income_overview);
 
-        ListView listView = findViewById(R.id.expenses_list_view);
+        ListView listView = findViewById(R.id.income_list_view);
         listView.setOnItemClickListener(this);
 
         DbDataSource dataSource = new DbDataSource(this);
@@ -33,12 +37,12 @@ public class ExpensesActivity extends AppCompatActivity implements AdapterView.O
                 MySqlLiteHelper.VENDOR_TABLE + " ON " +
                 MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " = " +
                 MySqlLiteHelper.VENDOR_TABLE + "." + MySqlLiteHelper.VENDOR_ID + " WHERE " +
-                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_AMOUNT + " < 0;";
+                MySqlLiteHelper.TRANSACTION_TABLE + "." + MySqlLiteHelper.TRANS_AMOUNT + " > 0;";
         Cursor cursor = dataSource.getCursor(query);
         Log.i("Database", "Query: " + query);
 
         if (cursor.moveToFirst()) {
-            listView.setAdapter(new ExpensesCursorAdapter(this, cursor));
+            listView.setAdapter(new IncomeCursorAdapter(this, cursor));
         }
         dataSource.close();
     }
@@ -51,8 +55,9 @@ public class ExpensesActivity extends AppCompatActivity implements AdapterView.O
 
 
     public void onClick(View v) {
-        if (v.getId()== R.id.expenseOverviewCancelButton) {
-                finish();
+        if (v.getId()== R.id.incomeOverviewCancelButton) {
+            finish();
         }
     }
 }
+
