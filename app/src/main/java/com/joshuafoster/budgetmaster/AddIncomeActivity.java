@@ -1,11 +1,13 @@
 package com.joshuafoster.budgetmaster;
 
+import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class AddIncomeActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -22,6 +25,9 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
     List<Vendor> vendors = new ArrayList<>();
     List<Category> categories = new ArrayList<>();
     DbDataSource dataSource = new DbDataSource(this);
+
+    private TextView dateTv;
+    private DatePickerDialog.OnDateSetListener dateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,39 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
         // attaching data adapter to spinner
         cat_spinner.setAdapter(categoryAdapter);
         vendor_spinner.setAdapter(vendorAdapter);
+
+
+        dateTv = findViewById(R.id.dateET);
+        dateTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+                int month = cal.get(Calendar.MONTH);
+
+                DatePickerDialog dpd = new DatePickerDialog(
+                        AddIncomeActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        dateSetListener,
+                        year,month,day);
+                dpd.getWindow();
+                dpd.show();
+            }
+        });
+
+        dateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month+=1;
+                String dateChosen= month+"-"+dayOfMonth+"-"+year;
+                dateTv.setText(dateChosen);
+            }
+        };
+
+
+
+
 
     }
 
