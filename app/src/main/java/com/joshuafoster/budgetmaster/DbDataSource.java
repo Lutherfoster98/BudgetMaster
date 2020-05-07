@@ -230,5 +230,22 @@ public class DbDataSource {
         values.put(MySqlLiteHelper.BUDGETED_AMOUNT, amount);
         database.insert(MySqlLiteHelper.BUDGETED_TABLE, null, values);
     }
+    public List<String> getBudgeted(int budget_id){
+        List<String> Transactions = new ArrayList<>();
 
+        String query = "SELECT * FROM " + MySqlLiteHelper.BUDGETED_TABLE + " WHERE " +
+                MySqlLiteHelper.BUDGET_ID + " = \"" + budget_id + "\";";
+        Cursor cursor = database.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String st = new String();
+                st=(MySqlLiteHelper.CAT_ID)+
+                (MySqlLiteHelper.BUDGETED_AMOUNT);
+                // Adding contact to list
+                Transactions.add(st);
+            } while (cursor.moveToNext());
+        }
+        return Transactions;
+    }
 }

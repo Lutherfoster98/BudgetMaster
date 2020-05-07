@@ -41,6 +41,7 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
         vendors = dataSource.getAllVendors(MySqlLiteHelper.INCOME_TYPE);
         categories = dataSource.getAllCategories(MySqlLiteHelper.INCOME_TYPE);
         dataSource.close();
+        typeCheck();
 
         // Spinner elements
         Spinner cat_spinner = findViewById(R.id.income_category_spinner);
@@ -120,6 +121,19 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+    public void typeCheck(){
+        String str;
+        TextView tv = findViewById(R.id.incomeHeadingTV);
+        Bundle extras = getIntent().getExtras();
+        str = extras.getString("title");
+
+            tv.setText("Add "+str);
+        tv = findViewById(R.id.payeeTV);
+            if (str.equals("Expense")){
+                tv.setText("Payee");
+            }
 
     }
 

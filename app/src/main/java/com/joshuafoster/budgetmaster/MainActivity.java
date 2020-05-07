@@ -47,11 +47,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.plusSignImageView:
                 Intent addIncomeIntent = new Intent(this, AddIncomeActivity.class);
+                addIncomeIntent.putExtra("title","Income");
                 startActivity(addIncomeIntent);
                 break;
             case R.id.minusSignImageView:
-                setContentView(R.layout.expense);
-                break;
+                Intent addExpenseIntent = new Intent(this, AddIncomeActivity.class);
+                addExpenseIntent.putExtra("title","Expense");
+                startActivity(addExpenseIntent);                break;
         }
 
     }
