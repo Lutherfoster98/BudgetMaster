@@ -40,6 +40,7 @@ public class ExpensesActivity extends AppCompatActivity implements AdapterView.O
         if (cursor.moveToFirst()) {
             listView.setAdapter(new ExpensesCursorAdapter(this, cursor));
         }
+        dataSource.close();
     }
 
 

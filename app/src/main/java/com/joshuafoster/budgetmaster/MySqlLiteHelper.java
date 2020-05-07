@@ -21,7 +21,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
     public static final String TRANSACTION_TABLE = "Transactions",
             CATEGORY_TABLE = "Categories",
             BUDGET_TABLE = "Budgets",
-            VENDOR_TABLE = "Vendors";
+            VENDOR_TABLE = "Vendors",
+            BUDGETED_TABLE = "Budgeted";
     public static final String TRANS_ID = "trans_id",
             TRANS_DATE = "trans_date",
             TRANS_AMOUNT = "trans_amount",
@@ -37,6 +38,8 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
             BUDGET_NAME = "budget_name",
             BUDGET_START = "budget_start",
             BUDGET_END = "budget_end";
+    public static final String BUDGETED_ID = "budgeted_id",
+            BUDGETED_AMOUNT = "budgeted_amount";
     public static final String EXPENSES_TYPE = "expenses",
             INCOME_TYPE = "income";
     public static final String[] CATEGORIES_INCOME = {"Salary", "Rentals", "Bonus", "Child Support", "Social Security Benefits", "Cash Gift", "Interest and Dividends"};
@@ -85,6 +88,13 @@ public class MySqlLiteHelper extends SQLiteOpenHelper {
                 BUDGET_NAME + " TEXT NOT NULL, " +
                 BUDGET_START + " INTEGER NOT NULL, " +
                 BUDGET_END + " INTEGER NOT NULL )";
+        db.execSQL(sql);
+
+        sql = "CREATE TABLE " + BUDGETED_TABLE + " (" +
+                BUDGETED_ID + " INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , " +
+                BUDGET_ID + " INTEGER NOT NULL , " +
+                CAT_ID + " INTEGER NOT NULL , " +
+                BUDGETED_AMOUNT + " TEXT NOT NULL) ";
         db.execSQL(sql);
 
         Random random = new Random();

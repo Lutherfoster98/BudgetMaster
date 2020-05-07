@@ -215,12 +215,20 @@ public class DbDataSource {
         database.insert(MySqlLiteHelper.VENDOR_TABLE, null, values);
     }
 
-    void addBudget(String name, Date start, Date end){
+    int addBudget(String name, Date start, Date end){
         ContentValues values = new ContentValues();
         values.put(MySqlLiteHelper.BUDGET_NAME, name);
         values.put(MySqlLiteHelper.BUDGET_START, MySqlLiteHelper.DATE_FORMAT_DB.format(start));
         values.put(MySqlLiteHelper.BUDGET_END, MySqlLiteHelper.DATE_FORMAT_DB.format(end));
-        database.insert(MySqlLiteHelper.BUDGET_TABLE, null, values);
+        return (int) database.insert(MySqlLiteHelper.BUDGET_TABLE, null, values);
+    }
+
+    void addBudgeted(int budget_id, int cat_id, double amount){
+        ContentValues values = new ContentValues();
+        values.put(MySqlLiteHelper.BUDGET_ID, budget_id);
+        values.put(MySqlLiteHelper.CAT_ID, cat_id);
+        values.put(MySqlLiteHelper.BUDGETED_AMOUNT, amount);
+        database.insert(MySqlLiteHelper.BUDGETED_TABLE, null, values);
     }
 
 }

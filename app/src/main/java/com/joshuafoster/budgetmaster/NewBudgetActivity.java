@@ -79,7 +79,13 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month += 1;
-                String dateChosen = month + "-" + dayOfMonth + "-" + year;
+                String dateChosen = "";
+                if (month < 10)
+                    dateChosen = "0" + month;
+                dateChosen += "-";
+                if (dayOfMonth < 10)
+                    dateChosen += "0";
+                dateChosen += dayOfMonth + "-" + year;
                 startDateTv.setText(dateChosen);
             }
         };
@@ -89,7 +95,13 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month += 1;
-                String dateChosen = month + "-" + dayOfMonth + "-" + year;
+                String dateChosen = "";
+                if (month < 10)
+                    dateChosen = "0" + month;
+                dateChosen += "-";
+                if (dayOfMonth < 10)
+                    dateChosen += "0";
+                dateChosen += dayOfMonth + "-" + year;
                 endDateTv.setText(dateChosen);
             }
         };
@@ -122,14 +134,10 @@ public class NewBudgetActivity extends AppCompatActivity implements View.OnClick
                     Log.e("Date", e.toString());
                 }
 
-                // Send values to the database
-                DbDataSource dataSource = new DbDataSource(this);
-                dataSource.openForWriting();
-                dataSource.addBudget(budgetName, startDate, endDate);
-
-                setContentView(R.layout.set_budget);
-
                 Intent budgetSetIntent = new Intent(this, SetBudgetActivity.class);
+                budgetSetIntent.putExtra("budgetName", budgetName);
+                budgetSetIntent.putExtra("startDate", MySqlLiteHelper.DATE_FORMAT_DB.format(startDate));
+                budgetSetIntent.putExtra("endDate", MySqlLiteHelper.DATE_FORMAT_DB.format(endDate));
                 startActivity(budgetSetIntent);
                 break;
         }

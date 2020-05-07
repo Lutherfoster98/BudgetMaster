@@ -94,7 +94,13 @@ public class AddIncomeActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month+=1;
-                String dateChosen= month+"-"+dayOfMonth+"-"+year;
+                String dateChosen = "";
+                if (month < 10)
+                    dateChosen = "0" + month;
+                dateChosen += "-";
+                if (dayOfMonth < 10)
+                    dateChosen += "0";
+                dateChosen += dayOfMonth + "-" + year;
                 dateTv.setText(dateChosen);
             }
         };
